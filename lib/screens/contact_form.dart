@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:persistencia/database/app_database.dart';
+import 'package:persistencia/database/dao/contact_dao.dart';
 import 'package:persistencia/models/Contact.dart';
 
 class ContactForm extends StatefulWidget {
@@ -15,6 +17,7 @@ class _ContactFormState extends State<ContactForm> {
 
   @override
   Widget build(BuildContext context) {
+    ContactDao _dao =  ContactDao();
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -47,8 +50,8 @@ class _ContactFormState extends State<ContactForm> {
                   onPressed: (){
                     final String name = _nameController.text;
                     final int accountNumber = int.tryParse(_accountController.text);
-                    final Contact newContact = Contact(name,accountNumber);
-                    Navigator.pop(context,newContact);
+                    final Contact newContact = Contact(0,name,accountNumber);
+                    _dao.save(newContact).then((id) =>  Navigator.pop(context,newContact));
                   },
                 ),
               ),

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:persistencia/models/Contact.dart';
 import 'package:persistencia/screens/dashboard.dart';
 
-void main() => runApp(ByteBank());
+import 'database/app_database.dart';
+
+void main() {
+  runApp(ByteBank());
+
+}
 
 class ByteBank extends StatelessWidget {
   // This widget is the root of your application.
